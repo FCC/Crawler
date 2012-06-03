@@ -158,11 +158,10 @@ $domain_array = explode(',',$domains);
 			if($store_local) {
 
 				// Split text/html; charset=UTF-8
-				$type_info = explode(" ", $page_data['type']);
+				$type_info = explode("; ", $page_data['type']);
 
 				// Only store 'text/html' files
 				// TO DO enable range of file types to save 
-				echo "type_info[0]: {$type_info[0]}";
 				if($type_info[0] == 'text/html' ) {
 					$data['html'] = $page_data['html'];
 				}
