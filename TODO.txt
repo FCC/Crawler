@@ -1,0 +1,3 @@
+# TO DO
+
+- Check that all queries for urls includes the crawl_tag

@@ -101,7 +101,7 @@ function clean_link($link, $dir) {
 
 
 /**
- * Performs a regular expressoin to see if a given link is an image
+ * Performs a regular expression to see if a given link is an image
  *
  * @params string $link target link
  * @return bool true on image, false on anything else
@@ -207,8 +207,8 @@ function get_page($pageID) {
  *
  * @return array Associative array of uncrawled URLs & page data
  */
-function uncrawled_urls() {
-	return mysql_array(mysql_query("SELECT * FROM `urls` WHERE `crawled` = '0' LIMIT 100"));
+function uncrawled_urls($crawl_tag) {
+	return mysql_array(mysql_query("SELECT * FROM `urls` WHERE `crawled` = '0' AND `crawl_tag`=\"$crawl_tag\" LIMIT 100"));
 }
 
 /**
@@ -217,7 +217,7 @@ function uncrawled_urls() {
  * @params string $link URL to check
  * @return bool true if URL exists, false if not found
  */
-function have_url($url) {
+function have_url($url,$crawl_tag) {
 	$url = mysql_row_array(mysql_select('urls',array('url'=>urldecode($url))));
 	if (sizeof($url)==0) return false;
 	else return $url['ID'];

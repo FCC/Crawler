@@ -32,7 +32,7 @@ $domain_array = explode(',',$domains);
 	/*
 	 * Grab list of uncrawled URLs, repeat while there are still URLs to crawl
 	 */
-	while ($urls = uncrawled_urls()) {
+	while ($urls = uncrawled_urls($crawl_tag)) {
 
 		/**
 		 * Loop through the array of uncrawled URLs
@@ -99,7 +99,7 @@ $domain_array = explode(',',$domains);
 				/**
 				 * Check to see if the URL is already in the table, if so, grab its ID number
 				 */
-				$to = have_url($link);
+				$to = have_url($link,$crawl_tag);
 				
 				/**
 				 * If the link is not in the table, add it

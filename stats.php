@@ -32,10 +32,10 @@ include('includes/functions.php');
 include('includes/mysql_functions.php');
 
 /**
- * Calculate number of crawled and Uncralwed pages
+ * Calculate number of crawled and Uncralwed pages for configured crawl_tag
  *
  */
-$data = mysql_query('SELECT crawled, COUNT(crawled) AS NumOccurrences FROM urls GROUP BY crawled');
+$data = mysql_query('SELECT crawled, COUNT(crawled) AS NumOccurrences FROM urls WHERE `crawl_tag`="'.$crawl_tag.'" GROUP BY crawled ');
 
 /**
  * Check for case of all files crawled (no row with uncrawled group count)
