@@ -3,7 +3,7 @@
  * 
  * Main crawler function.  Can be run manually or via cron.
  *
- * Append "?debug" to URL for verbose output, but performance will degrade over time (as browser buffer fills)
+ * Append "?debug=true" to URL for verbose output, but performance will degrade over time (as browser buffer fills)
  *
  */
 
