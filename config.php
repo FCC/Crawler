@@ -17,6 +17,11 @@
  * Local Timezone
  */
  $timezone = 'America/New_York';
+
+ /**
+ * Script Timeout (seconds)
+ */
+ $timeout = 180;
  
 /**
  *
@@ -26,6 +31,12 @@
  *
  */
 $domains = ""; 
+
+ /**
+  * Settings to save html of page into database
+  */
+ $store_local = True; // Set to False to not store
+
 
 /**
  * No Need to Edit below here
@@ -55,6 +66,10 @@ mysql_select_db ($mysql_db);
  */
 date_default_timezone_set($timezone);
 
+/**
+ * Set script timeout
+ */
+set_time_limit($timeout);
 
 /* 
 ================== VERIFY AND CREATE TABLES IF NECESSARY ================== 

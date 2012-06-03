@@ -148,12 +148,32 @@ $domain_array = explode(',',$domains);
 							'size' => $size,
 							'type' => $page_data['type'],
 							'modified' => $modified, 
-							'md5' => $page_data['md5']
+							'md5' => $page_data['md5'],
+							'html' => NULL
 							);
+
+			/** 
+			 * If config is set to store local version of file, store it
+			 */
+			if($store_local) {
+
+				// Split text/html; charset=UTF-8
+				$type_info = explode(" ", $page_data['type']);
+
+				// Only store 'text/html' files
+				// TO DO enable range of file types to save 
+				echo "type_info[0]: {$type_info[0]}";
+				if($type_info[0] == 'text/html' ) {
+					$data['html'] = $page_data['html'];
+				}
+			}
+
+
 			/**
 			 *  Store data
 			 */
 			mysql_update('urls',$data,array('ID'=>$id));
+
 			
 			/**
 			 * If in debug mode, close the <ul> we opened above
