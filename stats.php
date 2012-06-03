@@ -41,13 +41,14 @@ $data = mysql_query('SELECT crawled, COUNT(crawled) AS NumOccurrences FROM urls 
  * Check for case of all files crawled (no row with uncrawled group count)
  */
 $num_groups = mysql_num_rows($data);
-if ($num_groups = 1) {
+if ($num_groups < 2) {
 	$uncrawled = 0;
+	$crawled = mysql_result($data,0,1);
 } else {
 	$uncrawled = mysql_result($data,0,1);
+	$crawled = mysql_result($data,1,1);
 }
 
-$crawled = mysql_result($data,1,1);
 $total = $crawled+$uncrawled;
 $percent = 100 * $crawled / $total;
 
