@@ -149,8 +149,8 @@ function is_mailto($link) {
  * @params int $clicks number of clicks from initial page
  * @return bool true on sucess, false on fail
  */
-function add_url($link,$clicks) {
-	return mysql_insert('urls',array('url'=>urldecode($link),'clicks'=>$clicks));
+function add_url($link,$clicks,$crawl_tag) {
+	return mysql_insert('urls',array('url'=>urldecode($link),'clicks'=>$clicks,'crawl_tag'=>$crawl_tag));
 }
 
 /**

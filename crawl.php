@@ -114,7 +114,7 @@ $domain_array = explode(',',$domains);
 					/**
 					 * Add URL to table, grab link ID #
 					 */
-					$to = add_url($link,$clicks);
+					$to = add_url($link,$clicks,$crawl_tag);
 				}
 				
 				/**
