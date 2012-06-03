@@ -23,8 +23,11 @@ $domain_array = explode(',',$domains);
 <html>
 	<body>
 	<?php
-	echo "<p>STARTED: " . date('Y-m-d H:i:s') . "</p>"; 
-	echo "<p>Crawling...</p>";
+	echo "<p>STARTED: <b>" . date('Y-m-d H:i:s') . "</b></p>";
+	echo "<p>Domains: <b>$domains</b></p>";
+	echo "<p>crawl_tag: <b>$crawl_tag</b></p>";
+	echo "<p>database: <b>$mysql_db</b></p>";
+	echo "<p><b>Crawling...</b></p>";
 	
 	/*
 	 * Grab list of uncrawled URLs, repeat while there are still URLs to crawl
@@ -149,6 +152,7 @@ $domain_array = explode(',',$domains);
 							'type' => $page_data['type'],
 							'modified' => $modified, 
 							'md5' => $page_data['md5'],
+							'crawl_tag' => $crawl_tag,
 							'html' => NULL
 							);
 

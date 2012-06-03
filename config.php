@@ -18,7 +18,7 @@
  */
  $timezone = 'America/New_York';
 
- /**
+/**
  * Script Timeout (seconds)
  */
  $timeout = 180;
@@ -30,7 +30,16 @@
  * Example:  "www.fcc.gov, broadband.com"
  *
  */
-$domains = ""; 
+$domains = "www.fcc.gov, broadband.com"; 
+
+/**
+ *
+ * Tag or set name for a given crawl to allow multuple crawls in same database
+ *
+ * Example:  "mainsite"
+ *
+ */
+$crawl_tag = "mainsites"; 
 
  /**
   * Settings to save html of page into database

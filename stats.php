@@ -208,9 +208,16 @@ $sizes = mysql_row_array(mysql_query($sql));
 </div>
 
 <div class='clear'> </div>
-<?php 
-$sql = "SELECT title, url FROM urls WHERE crawled = '1' ORDER BY ID DESC LIMIT 1";
-$last = mysql_row_array(mysql_query($sql));
-?>
-<center><b>Last Page Crawled: </b><?php echo $last['title']; ?> (<?php echo $last['url'];?>) </center> 
+<div style='text-align:center;'>
+
+	<div><b>Current Domains: </b><?php echo $domains; ?></div> 
+	<div><b>Current Crawl Tag: </b><?php echo $crawl_tag; ?></div> 
+	<?php 
+	$sql = "SELECT title, url FROM urls WHERE crawled = '1' ORDER BY ID DESC LIMIT 1";
+	$last = mysql_row_array(mysql_query($sql));
+	?>
+	<div><b>Last Page Crawled: </b><?php echo $last['title']; ?> (<?php echo $last['url'];?>) </div> 
+
+</div>
+
 </body>

@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS `urls` (
   `type` varchar(64) DEFAULT NULL,
   `modified` int(15) DEFAULT NULL,
   `md5` varchar(32) DEFAULT NULL,
+  `crawl_tag` varchar(32) DEFAULT NULL,
   `html` text DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `url` (`url`)
