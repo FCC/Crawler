@@ -23,3 +23,5 @@ CREATE TABLE IF NOT EXISTS `urls` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `url` (`url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE INDEX crawl_tag ON urls (crawl_tag);
