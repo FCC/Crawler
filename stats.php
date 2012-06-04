@@ -115,7 +115,7 @@ if ($num_groups < 1) {
 		<th>Cumulative Count</th>
 	</tr>
 <?php
-$sql = 'SELECT clicks, COUNT(clicks) AS NumOccurrences FROM urls GROUP BY clicks HAVING ( COUNT(clicks) > 0 )';
+$sql = 'SELECT clicks, COUNT(clicks) AS NumOccurrences FROM urls WHERE `crawl_tag`="' . $crawl_tag . '" GROUP BY clicks HAVING ( COUNT(clicks) > 0 )';
 $clicks = mysql_array(mysql_query($sql));
 $cumulative = 0;
 foreach ($clicks as $click) { $cumulative += $click['NumOccurrences']; ?>
@@ -133,7 +133,7 @@ foreach ($clicks as $click) { $cumulative += $click['NumOccurrences']; ?>
 <h2>Response Codes</h2>
 </html>
 <?php
-$sql = 'SELECT http_code, COUNT(http_code) AS NumOccurrences FROM urls GROUP BY http_code HAVING ( COUNT(http_code) > 0 )';
+$sql = 'SELECT http_code, COUNT(http_code) AS NumOccurrences FROM urls WHERE `crawl_tag`="'.$crawl_tag.'" GROUP BY http_code HAVING ( COUNT(http_code) > 0 )';
 $codes = mysql_array(mysql_query($sql));
 ?>
 <table>
@@ -159,7 +159,7 @@ $codes = mysql_array(mysql_query($sql));
 <h2>File Types</h2>
 </html>
 <?php
-$sql = 'SELECT type, COUNT(type) AS NumOccurrences FROM urls GROUP BY type HAVING ( COUNT(type) > 0 ) ORDER BY NumOccurrences DESC';
+$sql = 'SELECT type, COUNT(type) AS NumOccurrences FROM urls WHERE `crawl_tag`="'.$crawl_tag.'" GROUP BY type HAVING ( COUNT(type) > 0 ) ORDER BY NumOccurrences DESC';
 $types = mysql_array(mysql_query($sql));
 ?>
 <table>
@@ -184,7 +184,7 @@ $types = mysql_array(mysql_query($sql));
 <h2>File Sizes</h2>
 </html>
 <?php
-$sql = 'SELECT MAX(size) as max, AVG(size) as avg FROM urls';
+$sql = 'SELECT MAX(size) as max, AVG(size) as avg FROM urls WHERE `crawl_tag`="'.$crawl_tag.'"';
 $sizes = mysql_row_array(mysql_query($sql));
 
 
@@ -213,7 +213,7 @@ $sizes = mysql_row_array(mysql_query($sql));
 	<div><b>Current Domains: </b><?php echo $domains; ?></div> 
 	<div><b>Current Crawl Tag: </b><?php echo $crawl_tag; ?></div> 
 	<?php 
-	$sql = "SELECT title, url FROM urls WHERE crawled = '1' ORDER BY ID DESC LIMIT 1";
+	$sql = 'SELECT title, url FROM urls WHERE crawled = "1" AND crawl_tag = "'.$crawl_tag.'" ORDER BY ID DESC LIMIT 1';
 	$last = mysql_row_array(mysql_query($sql));
 	?>
 	<div><b>Last Page Crawled: </b><?php echo $last['title']; ?> (<?php echo $last['url'];?>) </div> 
