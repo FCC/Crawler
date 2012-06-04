@@ -1,3 +1,4 @@
 # TO DO
 
+- Review/improve handling of confirmed in/out domains and also silly links like ?font=large
 - Check that all queries for urls includes the crawl_tag

@@ -22,7 +22,7 @@ header("Content-Disposition: attachment; filename=export.csv");
 /**
  * SQL query to generate our results
  */
-$pages = mysql_query("SELECT url, title, clicks, http_code, size, type, modified, (SELECT count(*) FROM links WHERE `to` = urls.ID) as incoming, (SELECT count(*) FROM links WHERE `to` = urls.ID) as outgoing from urls");
+$pages = mysql_query("SELECT url, title, clicks, http_code, crawl_tag, size, type, modified, (SELECT count(*) FROM links WHERE `to` = urls.ID) as incoming, (SELECT count(*) FROM links WHERE `to` = urls.ID) as outgoing from urls");
 
 /**
  * Count the number of pages in our dataset
