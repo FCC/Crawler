@@ -4,15 +4,17 @@ include('config.php');
 include('includes/functions.php');
 include('includes/mysql_functions.php');
 
-$sql = "SELECT url, title, clicks, http_code, size, type, modified, (SELECT count(*) FROM links WHERE `to` = urls.ID) as incoming, (SELECT count(*) FROM links WHERE `to` = urls.ID) as outgoing from urls";
+$sql = "SELECT url, title, clicks, http_code, size, type, modified, crawl_tag, (SELECT count(*) FROM links WHERE `to` = urls.ID) as incoming, (SELECT count(*) FROM links WHERE `to` = urls.ID) as outgoing from urls";
 
 
 if ($_GET) {
-	$sql .= " WHERE";
+	$sql .= " WHERE `crawl_tag` = '$crawl_tag' AND ";
 	foreach ($_GET as $field=>$value) $sql .= " `$field` = '". urldecode($value) . "'";
+} else {
+	$sql .= " WHERE `crawl_tag` = '$crawl_tag'";
 }
 
-$sql .= " LIMIT 100";
+$sql .= " LIMIT 300";
 
 $pages = mysql_query($sql);
 
