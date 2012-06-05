@@ -90,7 +90,12 @@ $domain_array = explode(',',$domains);
 				 * Verify that the link target is within our array of domains
 				 */
 				if (out_of_domain($link)) continue;
-				
+
+				/**
+				 * Verify that the link target is not excluded by a string match
+				 */
+				if (exclude_by_pattern($link)) continue;
+
 				/**
 				 * Verify that the link is not a mailto: link
 				 */ 

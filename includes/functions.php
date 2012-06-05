@@ -112,19 +112,45 @@ function is_image($link) {
 }
 
 /**
- * Checks to see that a given link is within the domain whitelist
+ * Checks to see that a given link is within the domain/host whitelist
  *
- * Note to self: this can be rewritten using a single regex command
+ * Improved from original to use regular expression and match hosts.
  *
  * @params string $link target link
  * @return bool true if out of domain, false if on domain whitelist
  */
 function out_of_domain($link) {
 	global $domain_array;
-	foreach ($domain_array as $domain) {
-		if (stripos($link,trim($domain)) != FALSE) return false;
-	}
-	return true;
+
+    // get host name from URL
+    preg_match("/^(http:\/\/)?([^\/]+)/i", $link, $matches);
+    $host = $matches[2];
+    // echo "<br />host: $host"; 
+    // get last two segments of host name
+    // preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
+    foreach ($domain_array as $domain) {
+        if ($domain == $host) {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+/**
+ * Checks to see that a given link matches a pattern in the exclude list
+ *
+ * @params string $link target link
+ * @return bool true if matches exclude, false if no match
+ */
+function exclude_by_pattern($link) {
+    global $excluded_array;
+    foreach ($excluded_array as $pattern) {
+        if ( preg_match($pattern, urldecode($link)) ) {
+            echo "<p>matched exclude pattern <b>$pattern</b> in ".urldecode($link)."</p>";
+            return TRUE;
+        } 
+    }
+    return FALSE;
 }
 
 /**

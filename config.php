@@ -8,10 +8,10 @@
  /**
   * MySQL Connection Settings
   */
- $mysql_server = '';
- $mysql_user = '';
- $mysql_pass = ''; 
- $mysql_db = '';
+ $mysql_server = 'localhost';
+ $mysql_user = 'root';
+ $mysql_pass = 'galgren'; 
+ $mysql_db = 'fcc_crawler';
 
 /**
  * Local Timezone
@@ -21,7 +21,7 @@
 /**
  * Script Timeout (seconds)
  */
- $timeout = 180;
+ $timeout = 380;
  
 /**
  *
@@ -30,7 +30,18 @@
  * Example:  "www.fcc.gov, broadband.com"
  *
  */
-$domains = "www.fcc.gov, broadband.com"; 
+$domains = "www.fcc.gov"; 
+
+/**
+ * 
+ * Patterns separated by a commas that if found should be excluded from crawl and link count.
+ *
+ * Example: "/fontsize=/i"
+ *
+ */
+$excluded_array = array("/fontsize=/", "/contrast=/","/page=[2-9]+/","/page=1[0-9]+/",
+	"/related-rss/","/document/","/print\/node/","/gov\/related\//","/gov\/reports\//",
+	"/gov\/Bureaus/","/gov\/events\/[a-zA-Z0-9]+/","/blog\/[0-9]+/","/ecfs\/comment\//","/fcc-bin\/bye/");
 
 /**
  *
@@ -39,12 +50,12 @@ $domains = "www.fcc.gov, broadband.com";
  * Example:  "mainsite"
  *
  */
-$crawl_tag = "mainsites"; 
+$crawl_tag = "mainsite"; 
 
  /**
   * Settings to save html of page into database
   */
- $store_local = True; // Set to False to not store
+$store_local = True; // Set to False to not store
 
 
 /**
@@ -56,9 +67,9 @@ $crawl_tag = "mainsites";
  * Check to ensure settings are not defaults
  */
 
- if ($mysql_server == ''|$mysql_user == ''|$mysql_pass==''|$mysql_db=='') die('You must enter MySQL information in config.php before continuing');
+if ($mysql_server == ''|$mysql_user == ''|$mysql_pass==''|$mysql_db=='') die('You must enter MySQL information in config.php before continuing');
  
- if ($domains == '') die('You must enter one or more domains in config.php before continuing');
+if ($domains == '') die('You must enter one or more domains in config.php before continuing');
  
 /**
  * Initiate database connection
